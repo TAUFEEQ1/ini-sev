@@ -35,7 +35,7 @@ class SendPost implements ShouldQueue
     {
         //
         $website = $this->post->website;
-        $subscribers = $website->subscribers();
+        $subscribers = $website->subscribers;
         $emails = $subscribers->pluck("email");
         $exitCode = Artisan::call("mail:send",["emails"=>$emails,"--post_id"=>$this->post->id]);
         return $exitCode;
